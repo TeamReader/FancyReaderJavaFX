@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.ShopViewController">
+   <children>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlerBack" prefHeight="30.0" prefWidth="64.0" text="返回">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <HBox />
+      <ListView fx:id="shopList" layoutX="38.0" layoutY="56.0" prefHeight="430.0" prefWidth="730.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0" />
+      <TextField fx:id="searchField" layoutX="171.0" layoutY="16.0" prefHeight="34.0" prefWidth="275.0" />
+      <Button fx:id="searchButton" layoutX="472.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlerSearch" prefHeight="30.0" prefWidth="56.0" text="查找">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="refreshButton" layoutX="706.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlerRefresh" prefHeight="30.0" prefWidth="64.0" text="刷新">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
