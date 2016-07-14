@@ -1,7 +1,12 @@
 package zz.reader.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,4 +40,30 @@ public class JsonUtil {
         String str = JSON.toJSONString(data);
         return str;
     }
+
+    public static JSONObject readJsonFile(File file){
+        String s = readFile(file);
+        return JSON.parseObject(s);
+    }
+
+    private static String readFile(File file){
+        StringBuilder fileContent = new StringBuilder();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String tempString = null;
+            while ((tempString = bufferedReader.readLine()) != null){
+                fileContent.append(tempString);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileContent.toString();
+    }
+
+
+
+
+
+
 }

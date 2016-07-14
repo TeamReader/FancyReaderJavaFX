@@ -8,13 +8,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.SettingViewController">
    <children>
-      <HBox alignment="CENTER" layoutX="39.0" layoutY="24.0" spacing="20.0">
+      <HBox alignment="CENTER" layoutX="39.0" layoutY="24.0" prefHeight="23.0" prefWidth="268.0" spacing="20.0">
          <children>
             <Label text="字体颜色设置" />
-            <ColorPicker fx:id="fontColor" prefHeight="23.0" prefWidth="165.0" />
+            <ColorPicker onAction="#handlerFontColorChange" fx:id="fontColorPicker" prefHeight="23.0" prefWidth="176.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="39.0" layoutY="73.0" spacing="20.0">
@@ -22,26 +23,30 @@
             <Label text="字体大小设置" />
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <TextField fx:id="fontSizeField" prefHeight="23.0" prefWidth="24.0" />
-                  <Slider fx:id="fontSizeSlide" max="30.0" />
+                  <TextField  fx:id="fontSizeField" prefHeight="23.0" prefWidth="31.0" />
+                  <Slider fx:id="fontSizeSlide" max="40.0" min="12" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="39.0" layoutY="118.0" prefHeight="23.0" prefWidth="257.0" spacing="20.0">
+      <HBox alignment="CENTER_LEFT" layoutX="39.0" layoutY="118.0" prefHeight="23.0" prefWidth="268.0" spacing="20.0">
          <children>
             <Label text="背景颜色设置" />
-            <ColorPicker fx:id="bgColorPicker" prefHeight="23.0" prefWidth="165.0" />
+            <ColorPicker onAction="#handlerBgColorChange" fx:id="bgColorPicker" prefHeight="23.0" prefWidth="176.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="39.0" layoutY="162.0" spacing="20.0">
+      <HBox alignment="CENTER" layoutX="39.0" layoutY="162.0" prefHeight="23.0" prefWidth="268.0" spacing="20.0">
          <children>
             <Label text="字体类型设置" />
-            <ChoiceBox fx:id="fontStyleChoiceBox" prefHeight="23.0" prefWidth="165.0" />
+            <ChoiceBox fx:id="fontStyleChoiceBox" prefHeight="23.0" prefWidth="176.0" />
          </children>
       </HBox>
-      <Label fx:id="exampleLabel" alignment="CENTER" layoutX="412.0" layoutY="73.0" prefHeight="56.0" prefWidth="102.0" text="示例example" wrapText="true" />
-      <Button fx:id="confirmButton" layoutX="450.0" layoutY="201.0" mnemonicParsing="false" text="确定" />
-      <Button fx:id="cancleButton" layoutX="374.0" layoutY="201.0" mnemonicParsing="false" text="取消" />
+      <HBox fx:id="hbox" alignment="CENTER" layoutX="324.0" layoutY="66.0" prefHeight="104.0" prefWidth="233.0">
+         <children>
+            <Text fx:id="exampleText" strokeType="OUTSIDE" strokeWidth="0.0" text="例子example" />
+         </children>
+      </HBox>
+      <Button fx:id="confirmButton" layoutX="450.0" layoutY="201.0" mnemonicParsing="false" onAction="#handlerConfirm" text="确定" />
+      <Button fx:id="cancelButton" layoutX="374.0" layoutY="201.0" mnemonicParsing="false" onAction="#handlerCancel" text="取消" />
    </children>
 </AnchorPane>

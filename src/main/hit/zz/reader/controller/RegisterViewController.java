@@ -5,10 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import zz.reader.constant.ClientConstant;
 import zz.reader.factory.ViewType;
 import zz.reader.manager.ViewManager;
-import zz.reader.service.UserServer;
+import zz.reader.model.UserConfig;
+import zz.reader.service.localServer.UserConfigServer;
+import zz.reader.service.remoteServer.UserServer;
 
 import java.util.regex.Pattern;
 
@@ -71,16 +73,27 @@ public class RegisterViewController {
             UserServer userServer = new UserServer();
             boolean registerSuccess = userServer.register(userName, passWord);
             if (registerSuccess){
-                initRegister();
+                UserConfig userConfig = new UserConfig.Builder(userName, passWord)
+                        .fontSize(ClientConstant.DEFAULT_FONT_SIZE)
+                        .fontStyle(ClientConstant.DEFAULT_FONT_STYLE)
+                        .fontColor(ClientConstant.DEFAULT_FONT_COLOR)
+                        .bgColor(ClientConstant.DEFAULT_BG_COLOR)
+                        .build();
+                if (userServer.pushPerference(userConfig)){
+                    UserConfigServer.addUserConfig(userConfig);
+                }else {
+                    // TODO: 2016-07-13 设置同步失败
+                }
+                initLoginLayout();
             }else {
-                // TODO: 2016-07-09 error
+                // TODO: 2016-07-09 error 注册失败
                 registerErrorLabel.setVisible(true);
             }
         }
     }
 
-    private void initRegister(){
-        ViewManager.initLayout(ViewType.LOGIN_VIEW, AnchorPane.class);
+    private void initLoginLayout(){
+        ViewManager.initLayout(ViewType.LOGIN_VIEW);
     }
 
 

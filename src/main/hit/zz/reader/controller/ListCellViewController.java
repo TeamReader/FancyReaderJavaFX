@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import zz.reader.constant.ClientConstant;
+import zz.reader.factory.ViewType;
+import zz.reader.manager.ViewManager;
 
 /**
  * Created by zz on 2016-07-08.
@@ -17,10 +21,7 @@ public class ListCellViewController{
     private Label bookName;
 
     @FXML
-    private Label bookDescription;
-
-    @FXML
-    private Label bookAuthor;
+    private Label author;
 
     public ListCellViewController() {
 
@@ -32,6 +33,7 @@ public class ListCellViewController{
 
     @FXML
     public void initialize(){
+        // TODO: 2016-07-10
         System.out.println("initialize");
     }
 
@@ -51,11 +53,19 @@ public class ListCellViewController{
         this.bookName.setText(bookName);
     }
 
-    public String getBookDescription() {
-       return bookDescription.getText();
+    public Label getAuthor() {
+        return author;
     }
 
-    public void setBookDescription(String bookDescription) {
-        this.bookDescription.setText(bookDescription);
+    public void setAuthor(String author) {
+        this.author.setText(author);
+    }
+
+    public void handlerClick(MouseEvent mouseEvent) {
+        System.out.println(mouseEvent.getClickCount());
+        if (mouseEvent.getClickCount() >= 2){
+            ClientConstant.nowReadBookName = bookName.getText();
+            ViewManager.initLayout(ViewType.READER_VIEW);
+        }
     }
 }

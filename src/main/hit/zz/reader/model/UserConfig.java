@@ -11,13 +11,13 @@ public class UserConfig {
 
     private String fontStyle;
 
-    private int fontSize;
+    private String fontSize;
 
     private String fontColor;
 
     private String bgColor;
 
-    public UserConfig(String userName, String passWord, String fontStyle, int fontSize, String fontColor, String bgColor) {
+    public UserConfig(String userName, String passWord, String fontStyle, String fontSize, String fontColor, String bgColor) {
         this.userName = userName;
         this.passWord = passWord;
         this.fontStyle = fontStyle;
@@ -27,6 +27,63 @@ public class UserConfig {
     }
 
     public UserConfig() {
+    }
+
+    public UserConfig(String userName, String passWord) {
+        this.passWord = passWord;
+        this.userName = userName;
+    }
+
+    public static class Builder{
+        private  String userName;
+
+        private  String passWord;
+
+        private  String fontStyle;
+
+        private  String fontSize;
+
+        private  String fontColor;
+
+        private  String bgColor;
+
+        public Builder(String userName, String passWord){
+            this.userName = userName;
+            this.passWord = passWord;
+        }
+
+        public Builder fontStyle(String fontStyle){
+            this.fontStyle = fontStyle;
+            return this;
+        }
+
+        public Builder fontSize(String fontSize){
+            this.fontSize = fontSize;
+            return this;
+        }
+
+        public Builder fontColor(String fontColor){
+            this.fontColor = fontColor;
+            return this;
+        }
+
+        public Builder bgColor(String bgColor){
+            this.bgColor = bgColor;
+            return this;
+        }
+
+        public UserConfig build(){
+            return new UserConfig(this);
+        }
+    }
+
+    private UserConfig(Builder builder){
+        userName = builder.userName;
+        passWord = builder.passWord;
+        fontStyle = builder.fontStyle;
+        fontSize = builder.fontSize;
+        fontColor = builder.fontColor;
+        bgColor = builder.bgColor;
     }
 
     public String getUserName() {
@@ -53,11 +110,11 @@ public class UserConfig {
         this.fontStyle = fontStyle;
     }
 
-    public int getFontSize() {
+    public String getFontSize() {
         return fontSize;
     }
 
-    public void setFontSize(int fontSize) {
+    public void setFontSize(String fontSize) {
         this.fontSize = fontSize;
     }
 

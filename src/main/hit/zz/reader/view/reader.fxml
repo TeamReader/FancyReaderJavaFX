@@ -20,11 +20,10 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="返回" />
+            <Button onAction="#handlerBackButton" fx:id="backButton" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="返回" />
             <Label fx:id="bookNameLable" contentDisplay="CENTER" text="bookName" GridPane.columnIndex="1" />
-            <Button fx:id="settingButton" mnemonicParsing="false" text="设置" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-      <Pagination fx:id="pagination" layoutX="10.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
+      <Pagination fx:id="pagination" layoutX="10.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
    </children>
 </AnchorPane>

@@ -20,7 +20,7 @@
                <children>
                   <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/image/mainIcon.png" />
+                        <Image url="@/image/12.png" />
                      </image>
                   </ImageView>
                   <Label text="TeamReader">
@@ -91,5 +91,6 @@
          </padding>
       </HBox>
       <Label fx:id="loginErrorLable" layoutX="102.0" layoutY="309.0" text="用户名或密码错误" textFill="RED" visible="false" />
+      <Label fx:id="userInfoSyncing" alignment="CENTER" layoutX="135.0" layoutY="309.0" text="Label" visible="false" />
    </children>
 </AnchorPane>

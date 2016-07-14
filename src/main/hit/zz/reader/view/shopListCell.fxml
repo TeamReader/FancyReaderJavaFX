@@ -14,17 +14,17 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="bookAuthor" layoutX="499.0" layoutY="17.0" text="作者" wrapText="true" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="499.0" AnchorPane.topAnchor="17.0">
+      <Label fx:id="author" layoutX="499.0" layoutY="17.0" text="作者" wrapText="true" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="499.0" AnchorPane.topAnchor="17.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="206.0" layoutY="63.0" prefHeight="107.0" prefWidth="425.0" text="描述" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="63.0">
+      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="206.0" layoutY="63.0" prefHeight="107.0" prefWidth="425.0" text="描述" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="63.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="636.0" layoutY="75.0" mnemonicParsing="false" text="下载">
+      <Button onAction="#handlerDownLoad" fx:id="downLoadButton" layoutX="636.0" layoutY="75.0" mnemonicParsing="false" text="下载">
          <font>
             <Font size="15.0" />
          </font>

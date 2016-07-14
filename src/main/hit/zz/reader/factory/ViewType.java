@@ -9,7 +9,10 @@ public enum ViewType {
     READER_VIEW("/zz/reader/view/reader.fxml"),
     MAIN_VIEW("/zz/reader/view/mainLayout.fxml"),
     SHOP_VIEW("/zz/reader/view/shopView.fxml"),
-    SETTING_VIEW("/zz/reader/view/settingDialog.fxml")
+    SHOPCELL_VIEW("/zz/reader/view/shopListCell.fxml"),
+    SETTING_VIEW("/zz/reader/view/settingDialog.fxml"),
+    LISTCELL_VIEW("/zz/reader/view/listCell.fxml")
+
     ;
     private String resourcePath;
     private ViewType(String resourcePath){

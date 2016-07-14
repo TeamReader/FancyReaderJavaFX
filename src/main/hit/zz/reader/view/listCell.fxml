@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.ListCellViewController">
+<AnchorPane onMouseClicked="#handlerClick" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.ListCellViewController">
    <children>
       <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="100.0" layoutX="-41.0" layoutY="-25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="356.0" AnchorPane.topAnchor="0.0" />
       <Label fx:id="bookName" layoutX="150.0" layoutY="20.0" text="这里是书的名字" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="150.0">
@@ -13,6 +13,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="bookAuthor" layoutX="214.0" layoutY="57.0" text="这里是作者的名字" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="214.0" AnchorPane.topAnchor="57.0" />
+      <Label fx:id="author" layoutX="214.0" layoutY="57.0" text="这里是作者的名字" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="214.0" AnchorPane.topAnchor="57.0" />
    </children>
 </AnchorPane>

@@ -1,80 +1,93 @@
 package zz.reader.model;
 
-import javafx.beans.property.StringProperty;
-
 /**
  * Created by zz on 2016-07-04.
  */
 public class BookInfo {
 
-    private StringProperty bookName;
+    private long id;
 
-    private StringProperty IconUrl;
+    private String bookName;
 
-    private StringProperty author;
+    private String icoUrl;
 
-    private StringProperty description;
+    private String author;
 
-    private StringProperty bookUrl;
+    private String description;
 
-    public String getBookName() {
-        return bookName.get();
+    private String bookUrl;
+
+    public BookInfo(String bookName, String icoUrl, String author, String description) {
+        this.bookName = bookName;
+        this.icoUrl = icoUrl;
+        this.author = author;
+        this.description = description;
     }
 
-    public StringProperty bookNameProperty() {
+    public BookInfo() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getBookName() {
         return bookName;
     }
 
     public void setBookName(String bookName) {
-        this.bookName.set(bookName);
+        this.bookName = bookName;
     }
 
-    public String getIconUrl() {
-        return IconUrl.get();
+    public String getIcoUrl() {
+        return icoUrl;
     }
 
-    public StringProperty iconUrlProperty() {
-        return IconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.IconUrl.set(iconUrl);
+    public void setIcoUrl(String icoUrl) {
+        this.icoUrl = icoUrl;
     }
 
     public String getAuthor() {
-        return author.get();
-    }
-
-    public StringProperty authorProperty() {
         return author;
     }
 
-
     public void setAuthor(String author) {
-        this.author.set(author);
+        this.author = author;
     }
 
     public String getDescription() {
-        return description.get();
-    }
-
-    public StringProperty descriptionProperty() {
         return description;
     }
 
     public void setDescription(String description) {
-        this.description.set(description);
+        this.description = description;
     }
 
     public String getBookUrl() {
-        return bookUrl.get();
-    }
-
-    public StringProperty bookUrlProperty() {
         return bookUrl;
     }
 
     public void setBookUrl(String bookUrl) {
-        this.bookUrl.set(bookUrl);
+        this.bookUrl = bookUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BookInfo bookInfo = (BookInfo) o;
+
+        return bookName.equals(bookInfo.bookName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return bookName.hashCode();
     }
 }

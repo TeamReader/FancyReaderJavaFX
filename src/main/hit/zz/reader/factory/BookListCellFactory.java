@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import zz.reader.controller.ListCellViewController;
+import zz.reader.model.BookInfo;
 import zz.reader.util.ImageUtil;
 
 import java.io.IOException;
@@ -11,22 +12,23 @@ import java.io.IOException;
 /**
  * Created by zz on 2016-07-08.
  */
-public class BookListCellFactory extends ListCell<String> {
+public class BookListCellFactory extends ListCell<BookInfo> {
 
 
     @Override
-    protected void updateItem(String bookName, boolean empty) {
-        super.updateItem(bookName, empty);
-        if (bookName == null || empty) {
+    protected void updateItem(BookInfo bookInfo, boolean empty) {
+        super.updateItem(bookInfo, empty);
+        if (bookInfo == null || empty) {
             setText(null);
+            setGraphic(null);
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/zz/reader/view/listCell.fxml"));
+            FXMLLoader fxmlLoader = FxmlLoaderFactory.generateLoader(ViewType.LISTCELL_VIEW);
             try {
                 AnchorPane anchorPane = fxmlLoader.load();
                 ListCellViewController listCellViewController = fxmlLoader.getController();
-                listCellViewController.setImage(ImageUtil.get(bookName));
-                listCellViewController.setBookName(bookName);
-                listCellViewController.setBookDescription("this is 描述");
+                listCellViewController.setImage(ImageUtil.getImageFile(bookInfo.getBookName()));
+                listCellViewController.setBookName(bookInfo.getBookName());
+                listCellViewController.setAuthor(bookInfo.getBookName());
                 setGraphic(anchorPane);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -8,13 +8,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.MainViewController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zz.reader.controller.MainViewController">
    <children>
       <MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="文件">
             <items>
-              <MenuItem fx:id="openLocalFile" onAction="#openLocalFile" mnemonicParsing="false" text="打开本地文件" />
+              <MenuItem fx:id="openLocalFile" mnemonicParsing="false" onAction="#openLocalFile" text="打开本地文件" />
                   <MenuItem fx:id="addLocalFile" mnemonicParsing="false" onAction="#addLocalFile" text="添加本地文件" />
             </items>
           </Menu>
@@ -25,20 +25,20 @@
           </Menu>
           <Menu mnemonicParsing="false" text="管理">
             <items>
-              <MenuItem fx:id="managerDownLoad" onAction="#downLoadManager" mnemonicParsing="false" text="下载管理" />
-                  <MenuItem fx:id="userSetting" onAction="#userConfig" mnemonicParsing="false" text="个人设置" />
+              <MenuItem fx:id="managerDownLoad" mnemonicParsing="false" onAction="#downLoadManager" text="下载管理" />
+                  <MenuItem fx:id="userSetting" mnemonicParsing="false" onAction="#userConfig" text="个人设置" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="bookList" prefHeight="455.0" prefWidth="460.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="35.0" />
+      <ListView fx:id="bookList" layoutX="14.0" layoutY="35.0" onMouseClicked="#handlerClick" prefHeight="455.0" prefWidth="460.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="35.0" />
       <AnchorPane layoutX="492.0" layoutY="60.0" prefHeight="291.0" prefWidth="300.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
          <children>
-            <ImageView fx:id="bookImageView" fitHeight="276.0" fitWidth="214.0" layoutX="43.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="basicInfoLable" layoutX="14.0" layoutY="7.0" text="基本信息：" AnchorPane.topAnchor="7.0" />
-            <Label fx:id="bookName" alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="312.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="142.0" text="这里是书的名字" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="79.0" />
-            <Label fx:id="bookAuthor" layoutX="106.0" layoutY="354.0" prefHeight="15.0" prefWidth="114.0" text="Label" />
-            <Label fx:id="bookDescription" layoutX="14.0" layoutY="378.0" text="Label" />
+            <ImageView fx:id="bookImageView" fitHeight="276.0" fitWidth="214.0" layoutX="43.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="28.0" />
+            <Label fx:id="basicInfoLable" layoutX="14.0" layoutY="7.0" text="基本信息：" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.0" />
+            <Label fx:id="bookName" alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="312.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="142.0" text="这里是书的名字" wrapText="true" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="79.0" />
+            <Label fx:id="author" alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="334.0" prefHeight="16.0" prefWidth="143.0" text="Label" wrapText="true" AnchorPane.bottomAnchor="106.0" AnchorPane.topAnchor="334.0" />
+            <Label fx:id="description" alignment="TOP_LEFT" layoutX="10.0" layoutY="355.0" prefHeight="96.0" prefWidth="291.0" text="Label" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="355.0" />
          </children>
       </AnchorPane>
    </children>
