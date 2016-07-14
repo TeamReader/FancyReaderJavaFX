@@ -48,10 +48,10 @@ public class BookServer implements CommonServer {
         boolean result = false;
         try {
             String deleteBookUrl = ServerConstant.DELETE_BOOK;
-            deleteBookUrl = deleteBookUrl+"?"+"userName="+userName;
+            deleteBookUrl = deleteBookUrl+"?bookName="+bookName+"&userName="+userName;
             String deleteSuccess = requestServer(deleteBookUrl);
             JSONObject jsonObject = JSON.parseObject(deleteSuccess);
-            result = (boolean) jsonObject.get("result");
+            result = Boolean.valueOf((String) jsonObject.get("result"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class BookServer implements CommonServer {
      * @param userName
      * @param lineNums
      */
-    public void recodeIndex(String bookName, String userName, String lineNums){
+    public void recodeIndex(String bookName, String userName, int lineNums){
         try {
             String addBookUrl = ServerConstant.RECORD_INDEX;
             addBookUrl = addBookUrl+"?bookName="+bookName+"&userName="+userName+"&lineNum="+lineNums;

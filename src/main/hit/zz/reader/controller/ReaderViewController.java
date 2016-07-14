@@ -10,7 +10,10 @@ import javafx.scene.text.Font;
 import zz.reader.constant.ClientConstant;
 import zz.reader.factory.ViewType;
 import zz.reader.manager.ViewManager;
+import zz.reader.model.ReadIndex;
 import zz.reader.model.UserConfig;
+import zz.reader.service.localServer.LocalBookServer;
+import zz.reader.service.remoteServer.BookServer;
 
 import java.io.*;
 import java.util.HashMap;
@@ -68,7 +71,12 @@ public class ReaderViewController {
             e.printStackTrace();
         }
         pagination.setPageCount(pageLineBeginMap.size());
-        pagination.setCurrentPageIndex(0);
+        ReadIndex readIndex = LocalBookServer.getReadIndex(ClientConstant.nowReadBookName);
+        int pageNum = 0;
+        if (!(readIndex==null)){
+            pageNum = Integer.parseInt(readIndex.getLineNum());
+        }
+        pagination.setCurrentPageIndex(pageNum);
         System.out.println(pagination.getHeight());
         System.out.println(pagination.getWidth());
         pagination.setPageFactory(indexPage -> {
@@ -81,36 +89,13 @@ public class ReaderViewController {
 
     @FXML
     public void handlerBackButton(){
+        int currentPageIndex = pagination.getCurrentPageIndex();
+        LocalBookServer.addReadIndex(currentPageIndex,ClientConstant.nowReadBookName);
+        BookServer bookServer = new BookServer();
+        bookServer.recodeIndex(ClientConstant.nowReadBookName,ClientConstant.getNowUser().getUserName(),pagination.getCurrentPageIndex());
         ViewManager.initLayout(ViewType.MAIN_VIEW);
     }
-    //
-//    /**
-//     *
-//     * @param file 阅读的文件
-//     * @param wordNumsPage　每页能够显示的字数
-//     * @param pageIndex　需要第几页的数据
-//     * @return
-//     */
-//    public String createPageData(File file, int wordNumsPage, int pageIndex){
-//        try {
-//            long wordPosition = wordNumsPage*pageIndex;
-//            String charset = TextUtil.getCharset(file);
-//            BufferedReader bufferedReader = new BufferedReader(
-//                    new InputStreamReader(
-//                            new FileInputStream(file),charset
-//                    ));
-//            long skip = bufferedReader.skip(wordPosition);
-//            char[] chars = new char[wordNumsPage];
-//            int read = bufferedReader.read(chars);
-//            System.out.println(read);
-////            return String.valueOf(chars).replace("/r","");
-//            return String.valueOf(chars);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return "";
-//        }
-//
-//    }
+
     private String createPageData(int pageIndex){
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -240,89 +225,4 @@ public class ReaderViewController {
 //     */
 //
 //
-////    public String createPageData(File file, int pageIndex,int wordNumsPerLine, int linesPerPage, int perPageEndLineNum){
-////        StringBuilder stringBuilder = new StringBuilder();
-////        try {
-////            displayLineBeginLineNum = perPageEndLineNum + 1;
-////            String charset = TextUtil.getCharset(file);
-////            LineNumberReader lineNumberReader = new LineNumberReader(
-////                    new InputStreamReader(
-////                            new FileInputStream(file), charset
-////                    )
-////            );
-////            lineNumberReader.setLineNumber(displayLineBeginLineNum);
-////            int defaultLinesNums = linesPerPage;
-////            int displayLine = displayLineBeginLineNum;
-////            for (;defaultLinesNums>0;){
-////                String s = lineNumberReader.readLine();
-////                int lines = (int) Math.ceil(s.length()/wordNumsPerLine);
-////                if (lines == 0){
-////                    lines = 1;
-////                }
-////                if(defaultLinesNums < lines){
-////                    break;
-////                }
-////                defaultLinesNums = defaultLinesNums - lines;
-////                displayLine += lines;
-////                stringBuilder.append(s).append("\r\n");
-////            }
-////            displayLineEndLineNum = displayLine;
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////        }
-////        return stringBuilder.toString();
-////    }
-//
-//    private int numsWordPerPage(){
-//        double height = pagination. getHeight();
-//        double width = pagination.getWidth();
-//
-////        int fontSize = Integer.parseInt(ClientConstant.getNowUser().getFontSize());
-//
-//        int fontSize = 12;
-//        int columnFontNums = (int) ((width)/fontSize);
-//
-//        int line = (int)((height)/fontSize);
-//
-//        return line*columnFontNums;
-//
-//    }
-//
-//    /**
-//     * 计算每行能够容纳的字符数
-//     * @return
-//     */
-//    private int wordNumsPerLine(){
-//        double width = pagination.getWidth();
-//        if (width == 0){
-//            width = 1200;
-//        }
-////        int fontSize = Integer.parseInt(ClientConstant.getNowUser().getFontSize());
-//        int fontSize = 12;
-//        return (int) ((width)/fontSize);
-//
-//    }
-//
-//    /**
-//     * 计算每页能够容纳的行数
-//     * @return
-//     */
-//    private int linesPerPage(){
-//        double height = pagination.getHeight();
-//        if (height == 0){
-//            height = 700;
-//        }
-////        float asdf = Toolkit.getToolkit().getFontLoader().getFontMetrics(Font.font(23)).getLineHeight();
-////        float width = com.sun.javafx.tk.Toolkit.getToolkit().getFontLoader().computeStringWidth("你", Font.font(23));
-////        System.out.println("this is "+width);
-////
-////        System.out.println("this is "+asdf);
-////        int fontSize = Integer.parseInt(ClientConstant.getNowUser().getFontSize());
-//        int fontSize = 17;
-//        return (int) (height/fontSize);
-//    }
-//
-//    public void read(File file){
-//
-//    }
 }

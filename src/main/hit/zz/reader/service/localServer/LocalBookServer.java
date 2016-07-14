@@ -1,9 +1,11 @@
 package zz.reader.service.localServer;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import zz.reader.constant.ClientConstant;
 import zz.reader.model.BookInfo;
+import zz.reader.model.ReadIndex;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,8 +20,65 @@ public class LocalBookServer {
         return null;
     }
 
-    public static void deleteBookById() {
+    public static void deleteBook(BookInfo bookInfo) {
+        Connection connection = DBHelper.getConnection();
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "delete from local_book_list where id = ?";
+        try {
+            int update = queryRunner.update(
+                    connection,
+                    sql,
+                    bookInfo.getId()
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static ReadIndex getReadIndex(String bookName){
+        Connection connection = DBHelper.getConnection();
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "select * from readindex where userName = ? and bookName = ?";
+        ReadIndex readIndex = new ReadIndex();
+        try {
+            readIndex = queryRunner.query(
+                    connection,
+                    sql,
+                    new BeanHandler<ReadIndex>(ReadIndex.class),
+                    ClientConstant.getNowUser().getUserName(),
+                    bookName
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  readIndex;
+    }
+
+    public static void addReadIndex(int lineNum, String bookName){
+        Connection connection = DBHelper.getConnection();
+        QueryRunner queryRunner = new QueryRunner();
+        String update = "update readindex set lineNum = ? where userName = ? and bookName = ?";
+        try {
+            int updateResult = queryRunner.update(
+                    connection,
+                    update,
+                    lineNum,
+                    ClientConstant.getNowUser().getUserName(),
+                    bookName
+            );
+            if (updateResult!=1){
+                String insert = "insert into readindex(bookName,lineNum,userName) values(?,?,?)";
+                int insertResult = queryRunner.update(
+                        connection,
+                        insert,
+                        bookName,
+                        lineNum,
+                        ClientConstant.getNowUser().getUserName()
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void addBook(BookInfo bookInfo) {

@@ -60,5 +60,7 @@ public class ShopViewController {
 
     public void handlerRefresh() {
         List<BookInfo> list = bookServer.searchBook("");
+        ObservableList<BookInfo> searchResult = FXCollections.observableArrayList(list);
+        shopList.setItems(searchResult);
     }
 }

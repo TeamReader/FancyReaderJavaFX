@@ -28,7 +28,7 @@ public class BookListCellFactory extends ListCell<BookInfo> {
                 ListCellViewController listCellViewController = fxmlLoader.getController();
                 listCellViewController.setImage(ImageUtil.getImageFile(bookInfo.getBookName()));
                 listCellViewController.setBookName(bookInfo.getBookName());
-                listCellViewController.setAuthor(bookInfo.getBookName());
+                listCellViewController.setAuthor(bookInfo.getAuthor());
                 setGraphic(anchorPane);
             } catch (IOException e) {
                 e.printStackTrace();

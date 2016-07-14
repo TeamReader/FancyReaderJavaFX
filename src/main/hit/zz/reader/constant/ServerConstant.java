@@ -18,11 +18,11 @@ public class ServerConstant {
 
     public static final String BOOK_LIST = SERVER_PROTOCAL_IP+SERVER_PORT+"/loadBookList";
 
-    public static final String DELETE_BOOK = SERVER_PROTOCAL_IP+SERVER_PORT+"";
+    public static final String DELETE_BOOK = SERVER_PROTOCAL_IP+SERVER_PORT+"/deleteBook";
 
     public static final String ADD_BOOK = SERVER_PROTOCAL_IP+SERVER_PORT+"/addBook";
 
-    public static final String RECORD_INDEX = SERVER_PROTOCAL_IP+SERVER_PORT+"";
+    public static final String RECORD_INDEX = SERVER_PROTOCAL_IP+SERVER_PORT+"/recordIndex";
 
     public static final String SEARCH_BOOK = SERVER_PROTOCAL_IP+SERVER_PORT+"/search";
 

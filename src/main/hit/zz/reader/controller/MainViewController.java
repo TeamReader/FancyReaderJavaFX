@@ -1,6 +1,7 @@
 package zz.reader.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
@@ -10,12 +11,16 @@ import zz.reader.factory.BookListCellFactory;
 import zz.reader.factory.ViewType;
 import zz.reader.manager.ViewManager;
 import zz.reader.model.BookInfo;
+import zz.reader.service.localServer.LocalBookServer;
+import zz.reader.service.remoteServer.BookServer;
 import zz.reader.util.ImageUtil;
 
 /**
  * Created by zz on 2016-07-08.
  */
 public class MainViewController {
+
+    @FXML private Button deleteButton;
 
     @FXML private ImageView bookImageView;
 
@@ -50,6 +55,7 @@ public class MainViewController {
         bookName.setVisible(false);
         author.setVisible(false);
         description.setVisible(false);
+        deleteButton.setVisible(false);
 
 //        bookList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 //            @Override
@@ -101,6 +107,16 @@ public class MainViewController {
             bookName.setVisible(true);
             description.setVisible(true);
             author.setVisible(true);
+            deleteButton.setVisible(true);
         }
+    }
+
+    @FXML
+    public void deleteBook() {
+        BookInfo bookInfo = bookList.getSelectionModel().getSelectedItem();
+        LocalBookServer.deleteBook(bookInfo);
+        BookServer bookServer = new BookServer();
+        bookServer.deleteBook(bookInfo.getBookName(),ClientConstant.getNowUser().getUserName());
+        bookList.getItems().remove(bookInfo);
     }
 }
